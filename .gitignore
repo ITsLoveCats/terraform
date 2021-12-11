@@ -1,6 +1,9 @@
 # macOS files
 .DS_Store
 
+# privatekey
+*pem
+
 # lock.hcl files
 *.lock.hcl
 

@@ -145,7 +145,7 @@ kubectl completion bash >/etc/bash_completion.d/kubectl
 cat <<EOF | sudo tee /ThingsToDo_as_a_master
 
 # in order to create a cluster with kubeadm
-sudo kubeadm init --cri-socket /run/containerd/containerd.sock
+sudo kubeadm init --cri-socket /run/containerd/containerd.sock --pod-network-cidr "192.168.0.0/16"
 
 # Installing a Pod network add-on 
 kubectl apply --filename=/tmp/calico.yaml

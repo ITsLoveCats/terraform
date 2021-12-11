@@ -1,7 +1,7 @@
 variable "project" {
   type        = string
   description = "The ID of the project in which the resource belongs"
-  default     = "playground-s-11-929a9e19"
+  default     = "playground-s-11-c5a153db"
 }
 
 variable "zone" {
