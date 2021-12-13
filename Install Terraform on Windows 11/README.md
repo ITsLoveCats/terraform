@@ -1,8 +1,17 @@
-# Download Terraform
+Install Terraform on Windows 11  
+===============================
+***Step-by-step following with Official Guide***
+
+
+# 1. Download Terraform
+
 Download the Terraform Windows Binary (.zip) from below 👇 Official Link 👇
 
 [Official Download Terraform](https://www.terraform.io/downloads.html)
-# Unzipping Terraform
+
+---
+
+# 2. Unzipping Terraform
 Moving the terraform.exe to a directory included in your system’s `PATH`.
 
 😘 Putting terraform.exe into system’s `PATH`, you can run it any directory. 
@@ -29,13 +38,17 @@ In this case, I copy terraform.exe, paste it in C:\Windows\System32
 
 ![Screenshot 2021-12-13 at 12 07 39 PM](https://user-images.githubusercontent.com/67352969/145761309-466027fb-be7b-48dd-b1e6-929a5d8772b6.png)
 
-# Verify Terraform version
+---
+
+# 3. Verify Terraform version
 
 `terraform version`
 
 ![render1639369127325](https://user-images.githubusercontent.com/67352969/145761361-89dfc140-ccf2-46a0-9832-fd521a059875.gif)
 
-# (Optional) SHA256 checksums for Terraform 1.1.0
+---
+
+# 4. (Optional) SHA256 checksums for Terraform 1.1.0
 
 verify the SHA256 checksum of the file to ensure its integrity.
 
@@ -51,11 +64,11 @@ Using `certutil.exe` to get the hash value of terraform.zip
 
 The generated checksum matches with the original checksum
 
-# References
+# 5. References
 [Terraform Installation](https://www.terraform.io/downloads.html)
 
 [Terraform Tutorial](https://learn.hashicorp.com/tutorials/terraform/install-cli)
 
-# Special Thanks 😘 to https://terminalizer.com
+# 6. Special Thanks 😘 to https://terminalizer.com
 
 Recording terminal and generate amazing animated gif
