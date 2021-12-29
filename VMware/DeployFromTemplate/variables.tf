@@ -34,10 +34,6 @@ variable "template" {
 
 }
 
-variable "instances" {
-
-}
-
 variable "vm_resourcepool" {
 
 }
