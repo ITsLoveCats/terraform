@@ -12,4 +12,4 @@ sudo apt install wireguard -y
 # Step 3 - Configuring Firewall ufw 
 ufw allow 51820/udp
 
-apt install resolvconf
+sudo apt install resolvconf

@@ -13,8 +13,8 @@ resource "aws_iam_access_key" "eks_admin" {
 }
 
 resource "aws_iam_policy_attachment" "eks-admin-attach" {
-  name       = "eks-admin-attachment"
-  users      = [var.iam_name]
+  name  = "eks-admin-attachment"
+  users = [var.iam_name]
 
   depends_on = [
     aws_iam_user.eks_admin

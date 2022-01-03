@@ -47,8 +47,8 @@ module "vpc" {
 # Create IAM Role for of Kubernetes Administer
 # ============================================
 
-resource "aws_iam_role" "example" {
-  name = "eks-cluster-example"
+resource "aws_iam_role" "dev-eks-cluster-role" {
+  name = "dev-eks-cluster-role"
 
   assume_role_policy = <<POLICY
 {
@@ -66,16 +66,16 @@ resource "aws_iam_role" "example" {
 POLICY
 }
 
-resource "aws_iam_role_policy_attachment" "example-AmazonEKSClusterPolicy" {
+resource "aws_iam_role_policy_attachment" "AmazonEKSClusterPolicy" {
   policy_arn = "arn:aws:iam::aws:policy/AmazonEKSClusterPolicy"
-  role       = aws_iam_role.example.name
+  role       = aws_iam_role.dev-eks-cluster-role.name
 }
 
 # Optionally, enable Security Groups for Pods
 # Reference: https://docs.aws.amazon.com/eks/latest/userguide/security-groups-for-pods.html
-resource "aws_iam_role_policy_attachment" "example-AmazonEKSVPCResourceController" {
+resource "aws_iam_role_policy_attachment" "AmazonEKSVPCResourceController" {
   policy_arn = "arn:aws:iam::aws:policy/AmazonEKSVPCResourceController"
-  role       = aws_iam_role.example.name
+  role       = aws_iam_role.dev-eks-cluster-role.name
 }
 
 # Endof Create IAM user
@@ -84,10 +84,10 @@ resource "aws_iam_role_policy_attachment" "example-AmazonEKSVPCResourceControlle
 # Create AWS EKS Cluster 
 # ======================
 
-resource "aws_eks_cluster" "example" {
+resource "aws_eks_cluster" "dev-eks-cluster" {
 
   name     = var.eks_cluster_name
-  role_arn = aws_iam_role.example.arn
+  role_arn = aws_iam_role.dev-eks-cluster-role.arn
 
   vpc_config {
     subnet_ids = module.vpc.private_subnets
@@ -96,8 +96,8 @@ resource "aws_eks_cluster" "example" {
   # Ensure that IAM Role permissions are created before and deleted after EKS Cluster handling.
   # Otherwise, EKS will not be able to properly delete EKS managed EC2 infrastructure such as Security Groups.
   depends_on = [
-    aws_iam_role_policy_attachment.example-AmazonEKSClusterPolicy,
-    aws_iam_role_policy_attachment.example-AmazonEKSVPCResourceController,
+    aws_iam_role_policy_attachment.AmazonEKSClusterPolicy,
+    aws_iam_role_policy_attachment.AmazonEKSVPCResourceController,
     module.vpc
   ]
 }
@@ -105,8 +105,8 @@ resource "aws_eks_cluster" "example" {
 # Create AWS EKS Node Group
 # =========================
 
-resource "aws_eks_node_group" "example" {
-  cluster_name    = aws_eks_cluster.example.name
+resource "aws_eks_node_group" "nodegroup" {
+  cluster_name    = aws_eks_cluster.dev-eks-cluster.name
   node_group_name = var.eks_nodegroup_name
   node_role_arn   = aws_iam_role.eks_nodegroup.arn
   subnet_ids      = module.vpc.public_subnets
@@ -161,10 +161,10 @@ resource "aws_iam_role_policy_attachment" "example-AmazonEC2ContainerRegistryRea
 }
 
 output "endpoint" {
-  value = aws_eks_cluster.example.endpoint
+  value = aws_eks_cluster.dev-eks-cluster.endpoint
 }
 
 output "kubeconfig-certificate-authority-data" {
-  value = aws_eks_cluster.example.certificate_authority[0].data
+  value = aws_eks_cluster.dev-eks-cluster.certificate_authority[0].data
 }
 

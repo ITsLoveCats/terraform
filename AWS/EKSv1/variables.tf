@@ -11,7 +11,7 @@ variable "vpc_name" {
 }
 
 variable "cloud9_iam" {
-  type = string
+  type        = string
   description = "(optional) describe your variable"
 }
 
@@ -34,11 +34,6 @@ variable "public_subnets" {
 
 variable "eks_cluster_name" {}
 variable "eks_nodegroup_name" {}
-
-variable "aws_directory_service" {
-  type        = map(string)
-  description = "(optional) describe your variable"
-}
 
 variable "assume_role_policy" {
   type        = string
@@ -65,11 +60,6 @@ variable "iam_policy_2" {
   description = "(optional) describe your variable"
 }
 
-variable "vpn_auth_type" {
-  type        = string
-  description = "(optional) describe your variable"
-}
-
 variable "tag" {
   type        = map(string)
   description = "Metadata key/value pairs to make available from within the instance"
@@ -79,3 +69,5 @@ variable "tag" {
     env       = "Tutorial"
   }
 }
+
+variable "IAMRole_eks_admin" {}

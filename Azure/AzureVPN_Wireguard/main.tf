@@ -9,7 +9,7 @@ variable "resource_group" {
   })
   default = {
     location = "eastus"
-    name     = "1-f55f05a7-playground-sandbox"
+    name     = "1-b22abd8b-playground-sandbox"
   }
 }
 
