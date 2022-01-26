@@ -1,16 +1,14 @@
-#!/bin/bash
+wget -qO - https://artifacts.elastic.co/GPG-KEY-elasticsearch | sudo apt-key add -
 
-# Update all packages that have available updates.
-sudo yum update -y
+sudo apt install apt-transport-https -y
 
-# Install Python 3 and pip.
-sudo yum install -y python3-pip
+echo "deb https://artifacts.elastic.co/packages/7.x/apt stable main" | sudo tee /etc/apt/sources.list.d/elastic-7.x.list
 
-# Upgrade pip3.
-sudo pip3 install --upgrade pip
+sudo apt update && sudo apt install elasticsearch -y
 
-# Install Ansible az collection for interacting with Azure.
-ansible-galaxy collection install azure.azcollection
+sudo systemctl enable elasticsearch.service --now
 
-# Install Ansible modules for Azure
-sudo pip3 install -r ~/.ansible/collections/ansible_collections/azure/azcollection/requirements-azure.txt
+sudo echo "network.host: 0.0.0.0" >> /etc/elasticsearch/elasticsearch.yml
+sudo echo "discovery.type: single-node" >> /etc/elasticsearch/elasticsearch.yml
+
+sudo systemctl restart elasticsearch.service

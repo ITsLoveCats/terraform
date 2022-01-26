@@ -91,7 +91,7 @@ resource "azurerm_linux_virtual_machine" "vm" {
   ]
   disable_password_authentication = false
 
-  custom_data = base64encode(file("${path.module}/cloud-init-update.txt"))
+  custom_data = base64encode(file("${path.module}/startup.sh"))
 
   os_disk {
     caching              = "ReadWrite"
