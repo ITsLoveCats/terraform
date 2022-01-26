@@ -1,3 +1,5 @@
+#!/bin/bash
+
 wget -qO - https://artifacts.elastic.co/GPG-KEY-elasticsearch | sudo apt-key add -
 
 sudo apt install apt-transport-https -y
