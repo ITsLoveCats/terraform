@@ -1,0 +1,7 @@
+touch script.ps1
+echo "Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))" >> script.ps1
+echo "c:\ProgramData\chocolatey\bin\choco.exe install notepadplusplus" >> script.ps1
+echo "invoke-webrequest https://artifacts.elastic.co/downloads/beats/filebeat/filebeat-7.16.3-windows-x86_64.zip -outfile c:\download\filebeat.zip" >> script.ps1
+
+group=$(az group list | jq '.[0].name' --raw-output)
+az vm run-command invoke --command-id RunPowerShellScript --name AzureVM2 -g $group --scripts @script.ps1
