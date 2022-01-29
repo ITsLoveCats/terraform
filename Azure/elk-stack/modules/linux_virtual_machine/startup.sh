@@ -24,6 +24,10 @@ sudo systemctl restart elasticsearch.service
 # kibana Stack
 sudo apt-get update && sudo apt-get install kibana
 
+echo "elasticsearch.username: "kibana_system"" >> /etc/kibana/kibana.yml
+
+/usr/share/kibana/bin/kibana-keystore create -s
+
 sudo systemctl enable --now kibana.service
 
 # nginx reverse proxy
