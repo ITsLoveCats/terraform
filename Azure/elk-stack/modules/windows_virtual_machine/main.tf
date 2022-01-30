@@ -45,3 +45,10 @@ resource "azurerm_windows_virtual_machine" "vm" {
   }
 }
 
+output "vm1" {
+  value = azurerm_windows_virtual_machine.vm["AzureVM1"].id
+}
+
+output "vm2" {
+  value = azurerm_windows_virtual_machine.vm["AzureVM2"].id
+}

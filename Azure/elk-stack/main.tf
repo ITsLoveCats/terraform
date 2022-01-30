@@ -11,7 +11,7 @@ variable "resource_group" {
   })
   default = {
     location = "eastus"
-    name     = "1-e63bad30-playground-sandbox"
+    name     = "1-78a4ce69-playground-sandbox"
   }
 }
 
@@ -50,6 +50,10 @@ module "bastion_host" {
 
   depends_on_module_virtual_network0 = module.virtual_network.subnet_id_0
   depends_on_module_virtual_network1 = module.virtual_network.subnet_id_1
+  depends_on_module_window_vm1 = module.window_virtual_machine.vm1
+  depends_on_module_window_vm2 = module.window_virtual_machine.vm2
+  depends_on_module_linux_vm1 = module.linux_virtual_machine.vm1
+  depends_on_module_linux_vm2 = module.linux_virtual_machine.vm2
 
 }
 

@@ -133,16 +133,22 @@ output "tls_private_key" {
   sensitive = true
 }
 
-
 output "private_ip" {
   value = toset([
     for private_ip in azurerm_network_interface.nic : private_ip.private_ip_address
   ])
 }
 
-
 output "public_ip" {
   value = toset([
     for public_ip in azurerm_public_ip.myterraformpublicip : public_ip.ip_address
   ])
+}
+
+output "vm1" {
+  value = azurerm_linux_virtual_machine.vm["ELK"].id
+}
+
+output "vm2" {
+  value = azurerm_linux_virtual_machine.vm["LinuxVM2"].id
 }

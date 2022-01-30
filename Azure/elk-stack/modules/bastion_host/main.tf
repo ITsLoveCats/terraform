@@ -7,6 +7,10 @@ variable "resource_group_name" {}
 variable "virtual_network_name" {}
 variable "depends_on_module_virtual_network0" {}
 variable "depends_on_module_virtual_network1" {}
+variable "depends_on_module_window_vm1" {}
+variable "depends_on_module_window_vm2" {}
+variable "depends_on_module_linux_vm1" {}
+variable "depends_on_module_linux_vm2" {}
 
 resource "azurerm_subnet" "bastion_subnet" {
   resource_group_name  = var.resource_group_name
